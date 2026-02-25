@@ -119,54 +119,30 @@ cartBtn.addEventListener('click', openCart);
 closeCart.addEventListener('click', hideCart);
 cartOverlay.addEventListener('click', hideCart);
 
-// Checkout API integration
-document.getElementById('checkoutBtn').addEventListener('click', async () => {
+// Checkout WhatsApp integration
+document.getElementById('checkoutBtn').addEventListener('click', () => {
     if (cart.length === 0) {
         alert("يرجى إضافة منتجات للسلة أولاً.");
         return;
     }
 
-    // Disable button and show loading state
-    const checkoutBtn = document.getElementById('checkoutBtn');
-    const originalText = checkoutBtn.innerHTML;
-    checkoutBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جاري إرسال الطلب...';
-    checkoutBtn.disabled = true;
+    const phoneNumber = "966545205548";
+    let message = "أهلاً بك، أود طلب الألعاب النارية التالية من مرحة العيد:\n\n";
 
-    try {
-        // Calculate total just as an example parameter
-        const totalValue = cart.reduce((acc, item) => acc + extractPriceValue(item.price), 0);
+    // Calculate total just as an example parameter
+    let totalValue = 0;
 
-        const response = await fetch('/api/checkout', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                cartItems: cart,
-                totalValue: totalValue.toFixed(2)
-            })
-        });
+    cart.forEach((item, index) => {
+        message += `${index + 1}- ${item.name} (${item.price})\n`;
+        totalValue += extractPriceValue(item.price);
+    });
 
-        const result = await response.json();
+    message += `\nالمجموع الكلي: ${totalValue.toFixed(2)} ر.س`;
 
-        if (result.success) {
-            alert(`تم تأكيد استلام طلبك بنجاح! رقم الطلب الخاص بك: ${result.orderId}`);
-            // Clear cart
-            cart = [];
-            updateCartUI();
-            hideCart();
-        } else {
-            alert('حدث خطأ أثناء معالجة الطلب. يرجى المحاولة لاحقاً.');
-        }
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
-    } catch (error) {
-        console.error('Error during checkout:', error);
-        alert('حدث خطأ في الاتصال بالخادم.');
-    } finally {
-        // Restore button state
-        checkoutBtn.innerHTML = originalText;
-        checkoutBtn.disabled = false;
-    }
+    window.open(whatsappUrl, '_blank');
 });
 
 // ==== Fireworks Canvas Animation ====
