@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مرحة العيد - ألعاب نارية</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Canvas for Fireworks -->
+    <canvas id="fireworksCanvas"></canvas>
+
+    <!-- Floating stars background -->
+    <div class="stars-bg"></div>
+
+    <header class="navbar">
+        <div class="container nav-content">
+            <div class="logo">
+                <h1>مرحة <span>العيد</span> <i class="fa-solid fa-moon"></i></h1>
+            </div>
+            <div class="cart-icon" id="cartBtn">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h2 class="hero-title">عش فرحة العيد <br><span class="highlight">بأجمل الألوان</span></h2>
+                    <p class="hero-subtitle">تشكيلة مميزة من الألعاب النارية الآمنة والممتعة لتضيء سماء احتفالاتكم.</p>
+                    <a href="#products" class="btn btn-primary glow-effect">تصفح المنتجات <i class="fa-solid fa-arrow-down"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="products" class="products-section">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">أحدث وأجمل الألعاب النارية</h3>
+                    <div class="decorative-line"></div>
+                </div>
+                
+                <div class="products-grid" id="productsGrid">
+                    <!-- Products dynamically injected here via JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Cart Sidebar / Modal -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>سلة المشتريات</h2>
+            <button class="close-cart" id="closeCart"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items injected here -->
+            <div class="empty-cart-msg">سلتك فارغة وعيدك ينتظر!</div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>المجموع:</span>
+                <span class="total-price" id="cartTotal">0.00 ر.س</span>
+            </div>
+            <button class="btn btn-checkout" id="checkoutBtn">
+                إتمام الطلب <i class="fa-solid fa-lock"></i>
+            </button>
+            <div class="payment-gateways">
+                <span>يقبل الدفع بواسطة:</span>
+                <div class="gateway-icons">
+                    <i class="fa-brands fa-cc-apple-pay"></i>
+                    <i class="fa-brands fa-cc-visa"></i>
+                    <i class="fa-brands fa-cc-mastercard"></i>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Mada_Logo.svg/2560px-Mada_Logo.svg.png" alt="Mada" class="mada-icon">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">مرحة <span>العيد</span></div>
+            <p>جميع الحقوق محفوظة &copy; 2026. صنع بحب ليالي العيد.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
